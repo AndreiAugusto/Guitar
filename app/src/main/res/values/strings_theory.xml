@@ -7,6 +7,7 @@
 
     <!-- Notas no braço -->
     <string name="fretboard_intro">Cada casa sobe um semitom. Depois do Mi e do Si não existe sustenido: o próximo é Fá e Dó. Na casa 12 as notas se repetem, uma oitava acima.</string>
+    <string name="fretboard_tuning">Afinação:</string>
     <string name="fretboard_tip">Toque numa casa para ouvir a nota</string>
     <string name="fretboard_show_accidentals">Mostrar ♯</string>
     <string name="fretboard_highlight">Onde está a nota…</string>

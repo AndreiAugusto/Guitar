@@ -1,4 +1,4 @@
-package dev.andrei.violaolivre.ui.tuner
+package dev.andrei.violaolivre.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource

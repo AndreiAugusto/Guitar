@@ -3,10 +3,12 @@ package dev.andrei.violaolivre.ui.theory
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -18,25 +20,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.music.FretPosition
+import dev.andrei.violaolivre.music.Tunings
 import dev.andrei.violaolivre.music.isNatural
 import dev.andrei.violaolivre.music.pitchClassName
 import dev.andrei.violaolivre.ui.components.FretMark
 import dev.andrei.violaolivre.ui.components.Fretboard
 import dev.andrei.violaolivre.ui.components.MarkStyle
 import dev.andrei.violaolivre.ui.components.ScreenHeader
+import dev.andrei.violaolivre.ui.components.TuningPicker
 import dev.andrei.violaolivre.ui.components.rememberNotePlayer
+import dev.andrei.violaolivre.ui.components.tuningName
 
 private const val LAST_FRET = 12
 
-/** Mapa das notas no braço: destaque de uma nota, ♯ opcionais e som ao tocar numa casa. */
+/** Mapa das notas no braço: afinação, destaque de uma nota, ♯ opcionais e som ao tocar numa casa. */
 @Composable
 fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
-    // rememberSaveable: o estado sobrevive a girar a tela (remember sozinho seria perdido)
+    // rememberSaveable: o estado sobrevive a girar a tela (remember sozinho seria perdido).
+    // Guarda só o id da afinação, porque o rememberSaveable precisa de valores simples.
+    var tuningId by rememberSaveable { mutableStateOf(Tunings.STANDARD.id) }
+    val tuning = Tunings.all.first { it.id == tuningId }
     var showAccidentals by rememberSaveable { mutableStateOf(false) }
     var highlighted by rememberSaveable { mutableStateOf<Int?>(null) }
     var selectedString by rememberSaveable { mutableStateOf<Int?>(null) }
@@ -47,7 +56,7 @@ fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     val marks = (0..5).flatMap { string ->
         (0..LAST_FRET).mapNotNull { fret ->
             val position = FretPosition(string, fret)
-            val pitchClass = position.note().pitchClass
+            val pitchClass = position.note(tuning).pitchClass
             val isHighlighted = pitchClass == highlighted
             if (!showAccidentals && !isNatural(pitchClass) && !isHighlighted) return@mapNotNull null
             val style = when {
@@ -55,7 +64,7 @@ fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 highlighted != null -> MarkStyle.FAINT
                 else -> MarkStyle.NOTE
             }
-            FretMark(position, pitchClassName(pitchClass), style)
+            FretMark(position, pitchClassName(pitchClass, tuning.useFlats), style)
         }
     }
 
@@ -67,6 +76,12 @@ fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
     ) {
         ScreenHeader(stringResource(R.string.theory_fretboard_title), onBack = onBack)
         Spacer(Modifier.height(8.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(stringResource(R.string.fretboard_tuning), style = MaterialTheme.typography.labelLarge)
+            Spacer(Modifier.width(8.dp))
+            TuningPicker(label = tuningName(tuning), selected = tuning, onSelect = { tuningId = it.id })
+        }
+        Spacer(Modifier.height(8.dp))
         Text(stringResource(R.string.fretboard_intro), style = MaterialTheme.typography.bodyMedium)
         Spacer(Modifier.height(16.dp))
 
@@ -76,7 +91,7 @@ fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 FilterChip(
                     selected = highlighted == pitchClass,
                     onClick = { highlighted = if (highlighted == pitchClass) null else pitchClass },
-                    label = { Text(pitchClassName(pitchClass)) },
+                    label = { Text(pitchClassName(pitchClass, tuning.useFlats)) },
                 )
             }
         }
@@ -94,7 +109,7 @@ fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
             onPositionClick = { position ->
                 selectedString = position.string
                 selectedFret = position.fret
-                player.playNote(position.note())
+                player.playNote(position.note(tuning))
             },
         )
         Spacer(Modifier.height(8.dp))
@@ -103,8 +118,8 @@ fun FretboardNotesScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         Text(
             text = when {
                 selected == null -> stringResource(R.string.fretboard_tip)
-                selected.fret == 0 -> stringResource(R.string.fretboard_position_open, stringNumber!!, selected.note().fullName())
-                else -> stringResource(R.string.fretboard_position, stringNumber!!, selected.fret, selected.note().fullName())
+                selected.fret == 0 -> stringResource(R.string.fretboard_position_open, stringNumber!!, selected.note(tuning).fullName(tuning.useFlats))
+                else -> stringResource(R.string.fretboard_position, stringNumber!!, selected.fret, selected.note(tuning).fullName(tuning.useFlats))
             },
             style = MaterialTheme.typography.titleMedium,
             color = if (selected == null) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,

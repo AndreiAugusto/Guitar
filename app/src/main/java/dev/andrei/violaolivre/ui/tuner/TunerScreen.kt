@@ -23,12 +23,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -62,7 +58,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.music.Note
 import dev.andrei.violaolivre.music.Tuning
-import dev.andrei.violaolivre.music.Tunings
+import dev.andrei.violaolivre.ui.components.TuningMenuItem
+import dev.andrei.violaolivre.ui.components.TuningPicker
+import dev.andrei.violaolivre.ui.components.tuningName
 import dev.andrei.violaolivre.ui.theme.InTuneGreen
 import dev.andrei.violaolivre.ui.theme.OutOfTuneOrange
 import kotlin.math.abs
@@ -201,79 +199,29 @@ private fun TunerContent(
     }
 }
 
-/** Botão com o nome da afinação; abre a lista das afinações prontas + modo cromático. */
+/** Seletor de afinação, com o modo cromático como item extra no fim do menu. */
 @Composable
 private fun TuningSelector(
     state: TunerUiState,
     onSelectTuning: (Tuning) -> Unit,
     onSelectChromatic: () -> Unit,
 ) {
-    var expanded by remember { mutableStateOf(false) }
-    // Box: o menu se posiciona em relação ao botão
-    Box {
-        AssistChip(
-            onClick = { expanded = true },
-            label = {
-                Text(if (state.isChromatic) stringResource(R.string.tuning_chromatic) else tuningName(state.tuning))
+    TuningPicker(
+        label = if (state.isChromatic) stringResource(R.string.tuning_chromatic) else tuningName(state.tuning),
+        selected = state.tuning.takeUnless { state.isChromatic },
+        onSelect = onSelectTuning,
+    ) { dismiss ->
+        HorizontalDivider()
+        TuningMenuItem(
+            title = stringResource(R.string.tuning_chromatic),
+            subtitle = stringResource(R.string.tuning_chromatic_description),
+            selected = state.isChromatic,
+            onClick = {
+                onSelectChromatic()
+                dismiss()
             },
-            trailingIcon = {
-                Icon(
-                    painterResource(R.drawable.ic_arrow_drop_down),
-                    contentDescription = stringResource(R.string.tuner_choose_tuning),
-                    modifier = Modifier.size(AssistChipDefaults.IconSize),
-                )
-            },
-            colors = AssistChipDefaults.assistChipColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                labelColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                trailingIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            ),
-            border = null,
         )
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            Tunings.all.forEach { tuning ->
-                TuningMenuItem(
-                    title = tuningName(tuning),
-                    subtitle = tuning.stringNames(),
-                    selected = !state.isChromatic && tuning == state.tuning,
-                    onClick = {
-                        onSelectTuning(tuning)
-                        expanded = false
-                    },
-                )
-            }
-            HorizontalDivider()
-            TuningMenuItem(
-                title = stringResource(R.string.tuning_chromatic),
-                subtitle = stringResource(R.string.tuning_chromatic_description),
-                selected = state.isChromatic,
-                onClick = {
-                    onSelectChromatic()
-                    expanded = false
-                },
-            )
-        }
     }
-}
-
-@Composable
-private fun TuningMenuItem(title: String, subtitle: String, selected: Boolean, onClick: () -> Unit) {
-    DropdownMenuItem(
-        text = {
-            Column {
-                Text(
-                    title,
-                    color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
-                )
-                Text(
-                    subtitle,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        },
-        onClick = onClick,
-    )
 }
 
 /** Nota grande com a oitava pequena ao lado, ex.: "A" + "2". */
