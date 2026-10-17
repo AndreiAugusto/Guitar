@@ -22,6 +22,8 @@
     <string name="tuner_hint_in_tune">Afinada!</string>
     <string name="tuner_mode_auto">Corda detectada automaticamente</string>
     <string name="tuner_mode_manual">Corda fixa · toque nela de novo para voltar ao automático</string>
+    <string name="tuner_play_reference">Ouvir referência (%1$s)</string>
+    <string name="tuner_play_reference_choose">Escolha uma corda para ouvir</string>
     <string name="tuner_string_description">%1$dª corda, %2$s</string>
     <string name="tuner_mic_error">Não foi possível acessar o microfone. Feche outros apps que estejam usando o microfone e tente de novo.</string>
     <string name="tuner_permission_title">O afinador precisa do microfone</string>

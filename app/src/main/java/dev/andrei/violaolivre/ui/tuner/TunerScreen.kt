@@ -21,15 +21,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -105,6 +108,7 @@ fun TunerScreen(
             onSelectTuning = viewModel::selectTuning,
             onSelectChromatic = viewModel::selectChromatic,
             onToggleString = viewModel::toggleString,
+            onPlayReference = viewModel::playReference,
             modifier = modifier,
         )
     } else {
@@ -127,6 +131,7 @@ private fun TunerContent(
     onSelectTuning: (Tuning) -> Unit,
     onSelectChromatic: () -> Unit,
     onToggleString: (Int) -> Unit,
+    onPlayReference: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -179,6 +184,9 @@ private fun TunerContent(
         }
 
         TuningHint(cents, Modifier.alpha(readingAlpha))
+
+        Spacer(Modifier.height(24.dp))
+        ReferenceButton(state.targetNote, state.useFlats, onPlayReference)
 
         if (state.micError) {
             Spacer(Modifier.height(16.dp))
@@ -322,6 +330,26 @@ private fun StringSelector(state: TunerUiState, onToggleString: (Int) -> Unit) {
                 )
             }
         }
+    }
+}
+
+/** Toca a nota alvo; desativado enquanto não houver uma (automático e sem som). */
+@Composable
+private fun ReferenceButton(note: Note?, useFlats: Boolean, onClick: () -> Unit) {
+    OutlinedButton(onClick = onClick, enabled = note != null) {
+        Icon(
+            painterResource(R.drawable.ic_volume_up),
+            contentDescription = null,
+            modifier = Modifier.size(ButtonDefaults.IconSize),
+        )
+        Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+        Text(
+            if (note != null) {
+                stringResource(R.string.tuner_play_reference, note.fullName(useFlats))
+            } else {
+                stringResource(R.string.tuner_play_reference_choose)
+            },
+        )
     }
 }
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dev.andrei.violaolivre.audio.MicListener
 import dev.andrei.violaolivre.audio.PitchDetector
 import dev.andrei.violaolivre.audio.PitchSmoother
+import dev.andrei.violaolivre.audio.ToneGenerator
 import dev.andrei.violaolivre.music.Tuning
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,6 +29,7 @@ class TunerViewModel : ViewModel() {
     private val micListener = MicListener()
     private val detector = PitchDetector(MicListener.SAMPLE_RATE, MicListener.WINDOW_SIZE)
     private val smoother = PitchSmoother()
+    private val toneGenerator = ToneGenerator()
     private var silentWindows = 0
 
     private val _uiState = MutableStateFlow(TunerUiState())
@@ -51,6 +53,7 @@ class TunerViewModel : ViewModel() {
     }
 
     fun stopListening() {
+        toneGenerator.stop()
         listening?.cancel()
         listening = null
         smoother.reset()
@@ -72,6 +75,17 @@ class TunerViewModel : ViewModel() {
         _uiState.update {
             it.copy(manualStringIndex = if (it.manualStringIndex == index) null else index)
         }
+    }
+
+    /** Toca a nota da corda alvo (ou, no modo cromático, a nota que está soando). */
+    fun playReference() {
+        val note = _uiState.value.targetNote ?: return
+        viewModelScope.launch { toneGenerator.play(note.frequency) }
+    }
+
+    // Chamado quando o ViewModel é descartado (ex.: o app foi fechado)
+    override fun onCleared() {
+        toneGenerator.stop()
     }
 
     private fun onDetection(result: PitchDetector.Result?) {
