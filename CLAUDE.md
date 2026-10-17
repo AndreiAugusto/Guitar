@@ -4,14 +4,14 @@ App Android pessoal (afinador, tabs, teoria, metrônomo). A especificação comp
 
 ## Fase atual
 
-**Fase 0 (Ambiente)**: projeto criado e com barra inferior de 4 abas. Falta o usuário confirmar no celular.
-Próxima: Fase 1 (Afinador).
+**Fase 1 (Afinador)**: aguardando o ok do usuário para o plano.
+Concluídas: Fase 0 (app abre no celular e troca entre as 4 abas).
 
 ## Como trabalhar com o usuário
 
-- Ele programa, mas é novo em Kotlin/Android: explicar conceitos novos em poucas linhas, linguagem simples.
-- **Uma fase por vez.** Só começar a próxima depois que ele confirmar que a atual funciona no celular.
-- No início de cada fase: plano curto (arquivos a criar/mudar e por quê), esperar o ok dele.
+- O usuário programa, mas é novo em Kotlin/Android: explicar conceitos novos em poucas linhas, linguagem simples.
+- **Uma fase por vez.** Só começar a próxima depois que o usuário confirmar que a atual funciona no celular.
+- No início de cada fase: plano curto (arquivos a criar/mudar e por quê), esperar o ok do usuário.
 - Depois de implementar: dizer exatamente como testar no celular e o que deve aparecer na tela.
 - Commits pequenos, em português, ao fim de cada passo que funcionou. Marcar no README os itens concluídos (só após confirmação no celular).
 - Se alguma escolha da stack parecer ruim, avisar antes de mudar.
