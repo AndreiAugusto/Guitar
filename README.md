@@ -39,6 +39,7 @@ O app tem quatro abas na barra inferior:
 - Mapa interativo das notas no braço do violão
 - Lições curtas: como ler tab, formação de acordes (maior, menor, 7ª), campo harmônico, escala pentatônica
 - Diagramas de acordes
+- Lição sobre as afinações: o que significam as letras (A = lá, B = si, C = dó...), os números das oitavas e os símbolos ♯/♭, e o que muda em cada afinação pronta (Drop D, Open G etc.) e para que tipo de música ela é usada
 
 ### 4. Metrônomo
 - BPM ajustável, compasso (2/4, 3/4, 4/4, 6/8) e acento no primeiro tempo
