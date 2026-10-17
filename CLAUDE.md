@@ -4,8 +4,11 @@ App Android pessoal (afinador, tabs, teoria, metrônomo). A especificação comp
 
 ## Fase atual
 
-**Fase 1 (Afinador)**: aguardando o ok do usuário para o plano.
+**Fase 1 (Afinador)**: os 5 passos estão implementados e commitados; falta o usuário confirmar no celular
+para marcar a fase no README. Afinações personalizadas ficaram para a Fase 2 (precisam do Room).
 Concluídas: Fase 0 (app abre no celular e troca entre as 4 abas).
+
+Ideias anotadas para depois: lição na Teoria sobre afinações e nomes das notas (já no roteiro da Fase 4 do README).
 
 ## Como trabalhar com o usuário
 
@@ -37,7 +40,7 @@ Concluídas: Fase 0 (app abre no celular e troca entre as 4 abas).
 
 ## Versões principais
 
-Gradle 9.8.1 (wrapper) · AGP 9.4.1 · Kotlin 2.4.21 · compileSdk/targetSdk 37 · minSdk 26.
+Gradle 9.8.1 (wrapper) · AGP 9.4.1 · Kotlin 2.4.21 · compileSdk/targetSdk 37 · minSdk 26 · JUnit 4 nos testes locais.
 O AGP 9 tem Kotlin embutido (não aplicar `kotlin-android` no módulo); o plugin declarado com `apply false` na raiz só fixa a versão do Kotlin.
 
 ## Comandos
@@ -45,8 +48,12 @@ O AGP 9 tem Kotlin embutido (não aplicar `kotlin-android` no módulo); o plugin
 ```bash
 ./gradlew assembleDebug    # compila o APK de debug
 ./gradlew installDebug     # compila e instala no celular conectado
+./gradlew testDebugUnitTest  # testes locais (rodam no computador)
+./gradlew lintDebug        # análise estática (relatório em app/build/reports/)
 adb devices                # lista aparelhos conectados
 adb logcat                 # logs do celular
+adb exec-out screencap -p > tela.png        # screenshot do celular (útil para conferir layout)
+adb shell am start -n dev.andrei.violaolivre/.MainActivity
 ```
 
 ## Estrutura
@@ -54,11 +61,28 @@ adb logcat                 # logs do celular
 ```
 app/src/main/java/dev/andrei/violaolivre/
 ├── MainActivity.kt          ponto de entrada; aplica o tema e o AppNavHost
+├── audio/                   Kotlin puro testável, exceto MicListener e ToneGenerator
+│   ├── PitchDetector.kt     YIN: janela de áudio (Float -1..1) → frequência + confiança
+│   ├── PitchSmoother.kt     mediana das últimas leituras; salto de nota só com 2 leituras seguidas
+│   ├── MicListener.kt       AudioRecord (44,1 kHz, PCM float) → Flow de janelas de 4096 com passo de 2048
+│   ├── StringSynth.kt       síntese aditiva de corda dedilhada
+│   └── ToneGenerator.kt     toca a síntese com AudioTrack (MODE_STATIC)
+├── music/
+│   ├── Note.kt              nota por número MIDI, frequência (A4 = 440), nomes ♯/♭, centsBetween
+│   └── Tuning.kt            Tuning (6 notas, 6ª → 1ª) e Tunings (as 9 do README)
 └── ui/
     ├── navigation/          AppDestination (abas e rotas) e AppNavHost (Scaffold + NavigationBar + NavHost)
     ├── components/          composables reutilizáveis (PlaceholderScreen)
-    ├── tuner/  songs/  theory/  metronome/   uma tela por aba (provisórias)
+    ├── tuner/               TunerScreen (permissão + layout), TunerViewModel, TunerUiState (cálculos
+    │                        testáveis: corda alvo, cents), TuningMeter (Canvas), TuningNames (id → strings.xml)
+    ├── songs/  theory/  metronome/   telas provisórias
     └── theme/               Color.kt e Theme.kt
+app/src/test/...             testes locais espelhando os pacotes acima
 ```
+
+Notas do afinador:
+- Microfone ligado só com a aba visível (`LifecycleStartEffect` na TunerScreen); a nota de referência também para ao sair.
+- Constantes ajustáveis: `IN_TUNE_CENTS` (5) em TunerUiState, `SILENCE_WINDOWS` (~2,5 s) no ViewModel,
+  `minRms`/`threshold` no PitchDetector.
 
 Estrutura planejada para as próximas fases (`audio/`, `music/`, `data/`): ver README.
