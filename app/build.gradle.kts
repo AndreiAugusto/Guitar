@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    // Saber quando o app inteiro vai para segundo plano (para o metrônomo parar)
+    implementation(libs.androidx.lifecycle.process)
 
     // Ferramentas de @Preview: só entram na versão de desenvolvimento (debug)
     debugImplementation(libs.androidx.compose.ui.tooling)
