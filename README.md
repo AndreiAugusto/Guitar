@@ -116,7 +116,7 @@ Ordem de execução: 0 → 1 → 3 → 4 → 2 → 5 (as músicas ficaram para d
 - [x] **Fase 0: Ambiente.** Instalar JDK e Android SDK, criar o projeto vazio e instalar no celular via cabo USB
 - [x] **Fase 1: Afinador.** Microfone, detecção de nota, afinações prontas e nota de referência
 - [ ] **Fase 2: Músicas.** Banco local, lista, editor, colar e importar `.txt`, leitor com rolagem automática
-- [ ] **Fase 3: Metrônomo**
+- [x] **Fase 3: Metrônomo**
 - [ ] **Fase 4: Teoria.** Mapa do braço, diagramas de acordes e lições
 - [ ] **Fase 5: Acabamento.** Modo escuro, ícone do app, backup e restauração das músicas em arquivo
 

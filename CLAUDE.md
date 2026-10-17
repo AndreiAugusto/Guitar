@@ -4,9 +4,9 @@ App Android pessoal (afinador, tabs, teoria, metrônomo). A especificação comp
 
 ## Fase atual
 
-**Fase 3 (Metrônomo)**: os 3 passos estão implementados e commitados (com tap tempo, pedido pelo usuário); falta o usuário confirmar no celular.
+**Fase 4 (Teoria)**: aguardando o ok do usuário para o plano.
 Ordem combinada: 0 → 1 → 3 → 4 → 2 → 5 (Músicas ficou para depois, por escolha do usuário).
-Concluídas: Fase 0 (ambiente + abas) e Fase 1 (afinador completo, confirmado no celular).
+Concluídas: Fase 0 (ambiente + abas), Fase 1 (afinador) e Fase 3 (metrônomo com tap tempo), todas confirmadas no celular.
 Pendências que dependem da Fase 2 (Room): afinações personalizadas; tocar no acorde de uma música abre o diagrama.
 
 Ideias anotadas para depois: lição na Teoria sobre afinações e nomes das notas (já no roteiro da Fase 4 do README).
