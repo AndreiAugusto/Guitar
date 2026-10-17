@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Violão Livre</string>
+
+    <!-- Abas da barra inferior -->
+    <string name="tab_tuner">Afinador</string>
+    <string name="tab_songs">Músicas</string>
+    <string name="tab_theory">Teoria</string>
+    <string name="tab_metronome">Metrônomo</string>
+
+    <!-- Textos provisórios das telas -->
+    <string name="placeholder_tuner">Em breve: detecção da nota pelo microfone (Fase 1)</string>
+    <string name="placeholder_songs">Em breve: suas músicas e tabs (Fase 2)</string>
+    <string name="placeholder_metronome">Em breve: metrônomo com BPM e compasso (Fase 3)</string>
+    <string name="placeholder_theory">Em breve: braço do violão, acordes e lições (Fase 4)</string>
 </resources>
