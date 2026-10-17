@@ -25,7 +25,7 @@ class PitchDetector(
     minFrequency: Double = 60.0,
     maxFrequency: Double = 1200.0,
     private val threshold: Double = 0.15,
-    private val minRms: Double = 0.01,
+    private val minRms: Double = 0.005,
 ) {
     /** Frequência encontrada e confiança (0 a 1; quanto mais perto de 1, mais periódico o som). */
     data class Result(val frequency: Double, val confidence: Double)

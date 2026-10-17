@@ -8,8 +8,18 @@
     <string name="tab_metronome">Metrônomo</string>
 
     <!-- Textos provisórios das telas -->
-    <string name="placeholder_tuner">Em breve: detecção da nota pelo microfone (Fase 1)</string>
     <string name="placeholder_songs">Em breve: suas músicas e tabs (Fase 2)</string>
     <string name="placeholder_metronome">Em breve: metrônomo com BPM e compasso (Fase 3)</string>
     <string name="placeholder_theory">Em breve: braço do violão, acordes e lições (Fase 4)</string>
+
+    <!-- Afinador -->
+    <string name="tuner_reading">%1$.1f Hz · %2$+d cents</string>
+    <string name="tuner_play_string">Toque uma corda</string>
+    <string name="tuner_no_note">–</string>
+    <string name="tuner_mic_error">Não foi possível acessar o microfone. Feche outros apps que estejam usando o microfone e tente de novo.</string>
+    <string name="tuner_permission_title">O afinador precisa do microfone</string>
+    <string name="tuner_permission_text">O som é analisado só no celular, enquanto esta tela está aberta. Nada é gravado nem enviado.</string>
+    <string name="tuner_permission_button">Permitir microfone</string>
+    <string name="tuner_permission_denied">A permissão foi negada. Para usar o afinador, ative o microfone nas configurações do app.</string>
+    <string name="tuner_open_settings">Abrir configurações</string>
 </resources>

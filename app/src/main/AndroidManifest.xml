@@ -2,6 +2,9 @@
 <!-- Manifesto: a "ficha" do app para o Android (nome, telas, permissões). -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Única permissão do app: o microfone, usado só com o afinador aberto -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <!-- allowBackup=false: nenhum dado vai para o backup em nuvem do Google -->
     <application
         android:allowBackup="false"
