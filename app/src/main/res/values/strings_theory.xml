@@ -4,6 +4,8 @@
     <!-- Lista de tópicos -->
     <string name="theory_fretboard_title">Notas no braço</string>
     <string name="theory_fretboard_subtitle">mapa interativo</string>
+    <string name="theory_chords_title">Acordes</string>
+    <string name="theory_chords_subtitle">diagramas, notas e som</string>
 
     <!-- Notas no braço -->
     <string name="fretboard_intro">Cada casa sobe um semitom. Depois do Mi e do Si não existe sustenido: o próximo é Fá e Dó. Na casa 12 as notas se repetem, uma oitava acima.</string>
@@ -13,4 +15,23 @@
     <string name="fretboard_highlight">Onde está a nota…</string>
     <string name="fretboard_position">%1$dª corda, casa %2$d: %3$s</string>
     <string name="fretboard_position_open">%1$dª corda solta: %2$s</string>
+
+    <!-- Acordes -->
+    <string name="chords_intro">Toque num acorde para ouvir e ver de quais notas ele é feito.</string>
+    <string name="chords_filter_all">Todos</string>
+    <string name="chords_filter_major">Maiores</string>
+    <string name="chords_filter_minor">Menores</string>
+    <string name="chords_filter_seventh">Com 7ª</string>
+    <string name="chords_filter_diminished">Diminutos</string>
+    <string name="chord_play">Ouvir</string>
+    <string name="chord_notes_on_fretboard">Onde estão as notas de %1$s no braço:</string>
+
+    <!-- Intervalos (o papel de cada nota no acorde) -->
+    <string name="interval_root">fundamental</string>
+    <string name="interval_minor_third">3ª menor</string>
+    <string name="interval_major_third">3ª maior</string>
+    <string name="interval_diminished_fifth">5ª diminuta</string>
+    <string name="interval_fifth">5ª</string>
+    <string name="interval_minor_seventh">7ª menor</string>
+    <string name="interval_major_seventh">7ª maior</string>
 </resources>

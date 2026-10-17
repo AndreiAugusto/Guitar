@@ -31,6 +31,7 @@ import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.ui.metronome.MetronomeScreen
 import dev.andrei.violaolivre.ui.metronome.MetronomeViewModel
 import dev.andrei.violaolivre.ui.songs.SongsScreen
+import dev.andrei.violaolivre.ui.theory.ChordsScreen
 import dev.andrei.violaolivre.ui.theory.FretboardNotesScreen
 import dev.andrei.violaolivre.ui.theory.TheoryScreen
 import dev.andrei.violaolivre.ui.tuner.TunerScreen
@@ -108,6 +109,7 @@ fun AppNavHost() {
             navigation<TheoryGraph>(startDestination = TheoryRoute) {
                 composable<TheoryRoute> { TheoryScreen(onOpenTopic = { navController.navigate(it) }) }
                 composable<FretboardNotesRoute> { FretboardNotesScreen(onBack = navController::popBackStack) }
+                composable<ChordsRoute> { ChordsScreen(onBack = navController::popBackStack) }
             }
             composable<MetronomeRoute> { MetronomeScreen(metronomeViewModel) }
         }

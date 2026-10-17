@@ -19,11 +19,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.ui.components.ScreenHeader
+import dev.andrei.violaolivre.ui.navigation.ChordsRoute
 import dev.andrei.violaolivre.ui.navigation.FretboardNotesRoute
 
 /** Um tópico da lista: título, subtítulo e a rota da tela dele. */
 enum class TheoryTopic(@StringRes val title: Int, @StringRes val subtitle: Int, val route: Any) {
     FRETBOARD_NOTES(R.string.theory_fretboard_title, R.string.theory_fretboard_subtitle, FretboardNotesRoute),
+    CHORDS(R.string.theory_chords_title, R.string.theory_chords_subtitle, ChordsRoute),
 }
 
 @Composable

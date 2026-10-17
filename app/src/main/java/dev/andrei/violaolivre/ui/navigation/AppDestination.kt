@@ -12,6 +12,7 @@ import kotlinx.serialization.Serializable
 @Serializable data object TheoryGraph   // a aba Teoria é um grupo de telas (lista + tópicos)
 @Serializable data object TheoryRoute   // a lista de tópicos
 @Serializable data object FretboardNotesRoute
+@Serializable data object ChordsRoute
 @Serializable data object MetronomeRoute
 
 /** As abas da barra inferior, na ordem em que aparecem. */
