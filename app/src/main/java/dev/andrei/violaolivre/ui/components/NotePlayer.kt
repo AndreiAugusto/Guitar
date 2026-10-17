@@ -21,6 +21,10 @@ class NotePlayer internal constructor(
 
     fun playChord(notes: List<Note>) = launch { generator.playChord(notes.map { it.frequency }) }
 
+    /** Notas uma depois da outra, como num riff ou arpejo. */
+    fun playSequence(notes: List<Note>, gapSeconds: Double = 0.35) =
+        launch { generator.playChord(notes.map { it.frequency }, gapSeconds) }
+
     // Um toque novo cancela o anterior, caso ele ainda esteja sendo sintetizado
     private fun launch(block: suspend () -> Unit) {
         job?.cancel()

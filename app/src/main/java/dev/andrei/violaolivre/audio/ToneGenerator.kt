@@ -14,8 +14,12 @@ class ToneGenerator {
     /** Gera o som de corda em [frequency] Hz e toca (interrompe o som anterior, se houver). */
     suspend fun play(frequency: Double) = playSamples { StringSynth.pluck(frequency) }
 
-    /** Toca um acorde dedilhado (frequências da corda mais grave para a mais aguda). */
-    suspend fun playChord(frequencies: List<Double>) = playSamples { StringSynth.strum(frequencies) }
+    /**
+     * Toca várias notas em sequência, uma a cada [gapSeconds]. Com o intervalo curto padrão
+     * soa como um acorde dedilhado; com intervalo maior, como um riff.
+     */
+    suspend fun playChord(frequencies: List<Double>, gapSeconds: Double = 0.04) =
+        playSamples { StringSynth.strum(frequencies, strumDelaySeconds = gapSeconds) }
 
     private suspend fun playSamples(synthesize: () -> FloatArray) {
         // A síntese leva alguns milissegundos: fora da thread da interface

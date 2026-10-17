@@ -19,13 +19,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.ui.components.ScreenHeader
+import dev.andrei.violaolivre.ui.navigation.ChordBuildingLessonRoute
 import dev.andrei.violaolivre.ui.navigation.ChordsRoute
 import dev.andrei.violaolivre.ui.navigation.FretboardNotesRoute
+import dev.andrei.violaolivre.ui.navigation.HarmonicFieldLessonRoute
+import dev.andrei.violaolivre.ui.navigation.NotesLessonRoute
+import dev.andrei.violaolivre.ui.navigation.PentatonicLessonRoute
+import dev.andrei.violaolivre.ui.navigation.TabLessonRoute
+import dev.andrei.violaolivre.ui.navigation.TuningsLessonRoute
 
 /** Um tópico da lista: título, subtítulo e a rota da tela dele. */
 enum class TheoryTopic(@StringRes val title: Int, @StringRes val subtitle: Int, val route: Any) {
+    // Na ordem sugerida de estudo
+    NOTES(R.string.lesson_notes_title, R.string.lesson_notes_subtitle, NotesLessonRoute),
     FRETBOARD_NOTES(R.string.theory_fretboard_title, R.string.theory_fretboard_subtitle, FretboardNotesRoute),
+    TUNINGS(R.string.lesson_tunings_title, R.string.lesson_tunings_subtitle, TuningsLessonRoute),
+    TAB(R.string.lesson_tab_title, R.string.lesson_tab_subtitle, TabLessonRoute),
+    CHORD_BUILDING(R.string.lesson_chord_building_title, R.string.lesson_chord_building_subtitle, ChordBuildingLessonRoute),
     CHORDS(R.string.theory_chords_title, R.string.theory_chords_subtitle, ChordsRoute),
+    HARMONIC_FIELD(R.string.lesson_harmonic_field_title, R.string.lesson_harmonic_field_subtitle, HarmonicFieldLessonRoute),
+    PENTATONIC(R.string.lesson_pentatonic_title, R.string.lesson_pentatonic_subtitle, PentatonicLessonRoute),
 }
 
 @Composable

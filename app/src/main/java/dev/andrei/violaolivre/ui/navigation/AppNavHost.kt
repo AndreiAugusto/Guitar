@@ -34,6 +34,12 @@ import dev.andrei.violaolivre.ui.songs.SongsScreen
 import dev.andrei.violaolivre.ui.theory.ChordsScreen
 import dev.andrei.violaolivre.ui.theory.FretboardNotesScreen
 import dev.andrei.violaolivre.ui.theory.TheoryScreen
+import dev.andrei.violaolivre.ui.theory.lessons.ChordBuildingLesson
+import dev.andrei.violaolivre.ui.theory.lessons.HarmonicFieldLesson
+import dev.andrei.violaolivre.ui.theory.lessons.NotesLesson
+import dev.andrei.violaolivre.ui.theory.lessons.PentatonicLesson
+import dev.andrei.violaolivre.ui.theory.lessons.TabLesson
+import dev.andrei.violaolivre.ui.theory.lessons.TuningsLesson
 import dev.andrei.violaolivre.ui.tuner.TunerScreen
 
 /** Estrutura principal: barra inferior com as abas + área que troca de tela. */
@@ -110,6 +116,12 @@ fun AppNavHost() {
                 composable<TheoryRoute> { TheoryScreen(onOpenTopic = { navController.navigate(it) }) }
                 composable<FretboardNotesRoute> { FretboardNotesScreen(onBack = navController::popBackStack) }
                 composable<ChordsRoute> { ChordsScreen(onBack = navController::popBackStack) }
+                composable<NotesLessonRoute> { NotesLesson(onBack = navController::popBackStack) }
+                composable<TuningsLessonRoute> { TuningsLesson(onBack = navController::popBackStack) }
+                composable<TabLessonRoute> { TabLesson(onBack = navController::popBackStack) }
+                composable<ChordBuildingLessonRoute> { ChordBuildingLesson(onBack = navController::popBackStack) }
+                composable<HarmonicFieldLessonRoute> { HarmonicFieldLesson(onBack = navController::popBackStack) }
+                composable<PentatonicLessonRoute> { PentatonicLesson(onBack = navController::popBackStack) }
             }
             composable<MetronomeRoute> { MetronomeScreen(metronomeViewModel) }
         }

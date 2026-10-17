@@ -13,6 +13,12 @@ import kotlinx.serialization.Serializable
 @Serializable data object TheoryRoute   // a lista de tópicos
 @Serializable data object FretboardNotesRoute
 @Serializable data object ChordsRoute
+@Serializable data object NotesLessonRoute
+@Serializable data object TuningsLessonRoute
+@Serializable data object TabLessonRoute
+@Serializable data object ChordBuildingLessonRoute
+@Serializable data object HarmonicFieldLessonRoute
+@Serializable data object PentatonicLessonRoute
 @Serializable data object MetronomeRoute
 
 /** As abas da barra inferior, na ordem em que aparecem. */

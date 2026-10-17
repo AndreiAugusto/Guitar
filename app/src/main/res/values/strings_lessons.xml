@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos das lições da aba Teoria -->
+<resources>
+    <!-- Títulos na lista -->
+    <string name="lesson_notes_title">As notas e suas letras</string>
+    <string name="lesson_notes_subtitle">A = Lá, B = Si, ♯, ♭ e oitavas</string>
+    <string name="lesson_tunings_title">Afinações</string>
+    <string name="lesson_tunings_subtitle">o que muda em cada uma</string>
+    <string name="lesson_tab_title">Como ler tab</string>
+    <string name="lesson_tab_subtitle">lição curta</string>
+    <string name="lesson_chord_building_title">Do que é feito um acorde</string>
+    <string name="lesson_chord_building_subtitle">maior, menor, 7ª</string>
+    <string name="lesson_harmonic_field_title">Campo harmônico</string>
+    <string name="lesson_harmonic_field_subtitle">por que Am, C e G combinam</string>
+    <string name="lesson_pentatonic_title">Escala pentatônica</string>
+    <string name="lesson_pentatonic_subtitle">desenhos no braço</string>
+
+    <!-- As notas e suas letras -->
+    <string name="notes_intro">Na música existem 7 notas naturais: Dó, Ré, Mi, Fá, Sol, Lá e Si. Nas cifras, tabs e afinadores elas aparecem como letras, no padrão em inglês, que começa pelo Lá:</string>
+    <string name="solfege_c">Dó</string>
+    <string name="solfege_d">Ré</string>
+    <string name="solfege_e">Mi</string>
+    <string name="solfege_f">Fá</string>
+    <string name="solfege_g">Sol</string>
+    <string name="solfege_a">Lá</string>
+    <string name="solfege_b">Si</string>
+    <string name="notes_tap_to_hear">Toque numa nota para ouvir.</string>
+    <string name="notes_steps_heading">Tom e semitom</string>
+    <string name="notes_steps_text">A menor distância entre duas notas é o semitom: no violão, uma casa. Duas casas são um tom. Entre quase todas as notas naturais há um tom, mas entre Mi e Fá e entre Si e Dó há só um semitom. Veja na 5ª corda (Lá), casa por casa:</string>
+    <string name="notes_accidentals_heading">Sustenido (♯) e bemol (♭)</string>
+    <string name="notes_accidentals_text">O ♯ sobe a nota um semitom e o ♭ desce um semitom. Por isso C♯ e D♭ são a mesma nota (a casa entre Dó e Ré), só com nomes diferentes. Como Mi e Fá já estão a um semitom, não sobra nota entre eles: um “Mi♯” seria o próprio Fá. O mesmo vale para Si e Dó.</string>
+    <string name="notes_octave_heading">O número da oitava</string>
+    <string name="notes_octave_text">Depois do Si as notas recomeçam no Dó, mais agudas. O número diz em qual “volta” a nota está: A2 é o Lá da 5ª corda solta, A3 é uma oitava acima, com o dobro da frequência (110 Hz → 220 Hz). O afinador mostra esse número para você saber se está afinando na oitava certa.</string>
+    <string name="notes_octave_compare">Ouvir A2, A3 e A4</string>
+    <string name="notes_chords_heading">E nas cifras?</string>
+    <string name="notes_chords_text">Nas cifras, a letra sozinha é o acorde maior: C é Dó maior. Um “m” depois da letra faz o acorde menor (Am = Lá menor), e um número acrescenta notas (G7 = Sol com sétima). A lição “Do que é feito um acorde” explica cada um.</string>
+
+    <!-- Afinações -->
+    <string name="tunings_intro">Afinar é ajustar a nota de cada corda solta. A afinação padrão, da 6ª para a 1ª corda, é E A D G B E (Mi Lá Ré Sol Si Mi). Mudar a afinação muda o desenho dos acordes e o “clima” do som. Em destaque, as cordas que mudam em relação à padrão:</string>
+    <string name="tunings_play">Ouvir as cordas soltas</string>
+    <string name="tunings_tip">Para usar uma delas, escolha no botão do topo do afinador. No mapa “Notas no braço” você vê como todas as notas mudam.</string>
+    <string name="tuning_desc_standard">A mais usada: quase todas as revistas, tabs e aulas partem dela.</string>
+    <string name="tuning_desc_half_step_down">Todas as cordas meio tom abaixo. Os desenhos são os mesmos da padrão, mas o som fica mais grave e as cordas mais macias. Usada por Jimi Hendrix, Stevie Ray Vaughan e Guns N\' Roses.</string>
+    <string name="tuning_desc_whole_step_down">Todas as cordas um tom abaixo: ainda mais grave. Comum no rock pesado e para acompanhar vozes mais graves sem mudar os desenhos dos acordes.</string>
+    <string name="tuning_desc_drop_d">Só a 6ª corda desce um tom (Mi → Ré). Dá um baixo de Ré bem grave e deixa os power chords com um dedo só. Muito usada no rock e no metal, e no violão para músicas em Ré.</string>
+    <string name="tuning_desc_drop_c">Como o Drop D, mas com todas as cordas um tom abaixo. Típica do metal moderno.</string>
+    <string name="tuning_desc_dadgad">A 6ª, a 2ª e a 1ª corda descem um tom. Soa aberta e ressonante, ótima para música celta e folk. “Kashmir”, do Led Zeppelin, usa DADGAD.</string>
+    <string name="tuning_desc_open_g">As cordas soltas formam um acorde de Sol maior, então um dedo deitado numa casa já faz um acorde maior. Clássica do blues e do slide; Keith Richards, dos Rolling Stones, usa muito.</string>
+    <string name="tuning_desc_open_d">As cordas soltas formam Ré maior. Muito usada no slide, no blues e no folk.</string>
+    <string name="tuning_desc_open_e">As cordas soltas formam Mi maior. Comum no slide e no blues, como nas gravações de Duane Allman.</string>
+
+    <!-- Como ler tab -->
+    <string name="tab_intro">A tablatura (tab) é um jeito de escrever música para violão sem partitura. As 6 linhas são as cordas, com a 1ª (Mi aguda) em cima, igual ao mapa do braço. Os números dizem em qual casa apertar; 0 é a corda solta.</string>
+    <string name="tab_reading_text">Lê-se da esquerda para a direita, uma nota de cada vez. Este exemplo é um arpejo de Lá menor: 2ª casa da 3ª corda, 1ª casa da 2ª corda, 1ª corda solta…</string>
+    <string name="tab_play_riff">Ouvir o exemplo</string>
+    <string name="tab_chord_heading">Acordes na tab</string>
+    <string name="tab_chord_text">Números um embaixo do outro são tocados juntos: é um acorde. O “x” é a corda que não deve soar. Este é o acorde de Dó maior, o C:</string>
+    <string name="tab_play_chord">Ouvir o acorde</string>
+    <string name="tab_symbols_heading">Símbolos comuns</string>
+    <string name="tab_symbol_hammer">h: ligado ascendente (hammer-on). Toque a 1ª nota e “martele” a 2ª com outro dedo, sem palhetar de novo. Ex.: 5h7</string>
+    <string name="tab_symbol_pull">p: ligado descendente (pull-off). Puxe o dedo da corda para soar a nota de baixo. Ex.: 7p5</string>
+    <string name="tab_symbol_slide">/ e \\ : deslize o dedo para cima ou para baixo sem tirá-lo da corda. Ex.: 5/7</string>
+    <string name="tab_symbol_bend">b: puxe a corda para o lado até soar a nota indicada (bend). Ex.: 7b9</string>
+    <string name="tab_symbol_vibrato">~ : vibrato, balance o dedo para a nota “ondular”.</string>
+    <string name="tab_symbol_mute">x : nota abafada, um som percussivo, sem nota definida.</string>
+    <string name="tab_symbol_bar">| : separa os compassos.</string>
+    <string name="tab_rhythm_text">A tab mostra onde tocar, mas não o ritmo. Por isso vale ouvir a música (ou o vídeo) junto.</string>
+
+    <!-- Do que é feito um acorde -->
+    <string name="chord_building_intro">Um acorde é um grupo de notas tocadas juntas. Ele leva o nome da sua nota principal, a fundamental: o acorde de Lá (A) é construído a partir da nota Lá.</string>
+    <string name="chord_building_triad">A receita mais comum é a tríade: a fundamental, mais a 3ª e a 5ª nota contando a partir dela na escala. Para Dó maior: Dó (1), Ré, Mi (3), Fá, Sol (5). Então C = Dó + Mi + Sol.</string>
+    <string name="chord_building_third_heading">Maior ou menor? A 3ª decide</string>
+    <string name="chord_building_third_text">A 3ª é a nota que dá o “clima”. Com a 3ª maior (4 semitons acima da fundamental) o acorde soa alegre e aberto; com a 3ª menor (3 semitons) soa triste ou melancólico. Compare A e Am: só uma nota muda, C♯ vira C.</string>
+    <string name="chord_building_seventh_heading">A 7ª: uma quarta nota</string>
+    <string name="chord_building_seventh_text">Acrescentando a 7ª, o acorde ganha cor. O “7” (7ª menor) soa como se pedisse para resolver, típico do blues e de finais de frase. O “7M” (7ª maior) soa suave e sofisticado, comum na bossa nova. O “m7” é o menor com 7ª, macio e jazzístico.</string>
+    <string name="chord_building_try_heading">Monte um acorde</string>
+    <string name="chord_building_root">Fundamental:</string>
+    <string name="chord_building_quality">Tipo:</string>
+    <string name="chord_building_no_shape">Este acorde ainda não tem desenho na biblioteca, mas você pode ouvir e ver onde estão as notas dele.</string>
+    <string name="chord_building_repeat">No violão o mesmo acorde repete notas em várias cordas (o C aberto tem dois Dós e dois Mis), mas são sempre só essas notas.</string>
+    <string name="quality_major">Maior</string>
+    <string name="quality_minor">Menor</string>
+
+    <!-- Campo harmônico -->
+    <string name="field_intro">Cada tom usa as 7 notas de uma escala maior. Montando um acorde a partir de cada nota, usando só as notas da escala, surgem 7 acordes: o campo harmônico. Como todos usam as mesmas notas, eles soam bem juntos, e a maioria das músicas populares usa só acordes de um campo.</string>
+    <string name="field_recipe">A receita é sempre a mesma: maior, menor, menor, maior, maior, menor e diminuto (I ii iii IV V vi vii°).</string>
+    <string name="field_key">Tom:</string>
+    <string name="field_scale">Escala de %1$s maior: %2$s</string>
+    <string name="field_why_heading">Por que Am, C e G combinam?</string>
+    <string name="field_why_text">Am, C e G estão no campo de Dó (vi, I e V) e também no de Sol (ii, IV e I). Nenhum deles tem nota fora da escala de Dó: Am = A C E, C = C E G, G = G B D.</string>
+    <string name="field_common_heading">Os graus mais usados</string>
+    <string name="field_common_text">I, IV e V são a base de muito rock, blues e música sertaneja. Somando o vi (o relativo menor) surge a famosa sequência I–V–vi–IV, que em Dó é C G Am F, presente em centenas de músicas pop.</string>
+
+    <!-- Escala pentatônica -->
+    <string name="pentatonic_intro">A pentatônica tem 5 notas (penta = cinco). A menor é a escala mais usada em solos de rock e blues: ela tira da escala menor as duas notas que mais “brigam” com os acordes, então é difícil errar.</string>
+    <string name="pentatonic_key">Tom (menor):</string>
+    <string name="pentatonic_box">Desenho:</string>
+    <string name="pentatonic_notes">%1$s menor pentatônica: %2$s</string>
+    <string name="pentatonic_legend">Em azul a tônica, em cinza as outras notas do desenho; as apagadas são as notas da escala em outros desenhos. Toque para ouvir.</string>
+    <string name="pentatonic_play_box">Ouvir o desenho</string>
+    <string name="pentatonic_relative">São as mesmas notas de %1$s maior pentatônica: escalas relativas, mesmas notas com outra nota como centro.</string>
+    <string name="pentatonic_chords_heading">Com quais acordes ela combina?</string>
+    <string name="pentatonic_chords_text">A pentatônica de %1$s menor soa bem sobre os acordes do campo de %2$s maior, como %3$s.</string>
+    <string name="pentatonic_tip">Dica: comece pelo desenho 1, com a tônica na 6ª corda sob o indicador, e toque subindo e descendo devagar com o metrônomo.</string>
+</resources>

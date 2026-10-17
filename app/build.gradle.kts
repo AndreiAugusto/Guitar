@@ -34,6 +34,11 @@ android {
     buildFeatures {
         compose = true
     }
+
+    lint {
+        // O corretor do lint é em inglês e marca palavras em português como erro ("eles" → "eels")
+        disable += "Typos"
+    }
 }
 
 dependencies {

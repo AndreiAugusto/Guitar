@@ -27,6 +27,7 @@ import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.music.Chord
 import dev.andrei.violaolivre.music.ChordShape
 import dev.andrei.violaolivre.music.FretPositions
+import dev.andrei.violaolivre.music.Note
 import dev.andrei.violaolivre.music.pitchClassName
 
 /** Nome do intervalo em português, a partir da distância em semitons até a fundamental. */
@@ -43,6 +44,24 @@ fun intervalName(semitones: Int): String = stringResource(
         else -> error("Intervalo sem nome: $semitones")
     },
 )
+
+/** Botão com ícone de alto-falante. */
+@Composable
+fun PlayButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    OutlinedButton(onClick = onClick, modifier = modifier) {
+        Icon(
+            painterResource(R.drawable.ic_volume_up),
+            contentDescription = null,
+            modifier = Modifier.size(ButtonDefaults.IconSize),
+        )
+        Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+        Text(text)
+    }
+}
+
+/** As notas do acorde numa oitava confortável (a partir do Dó 3), para tocar quando não há desenho. */
+fun Chord.voicedNotes(): List<Note> =
+    quality.intervals.map { Note(48 + root + it) }
 
 /** Quadradinho da grade de acordes: nome + diagrama. */
 @Composable
@@ -96,17 +115,7 @@ fun ChordDetail(
                         color = if (semitones == 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
                     )
                 }
-                if (shape != null) {
-                    OutlinedButton(onClick = onPlay) {
-                        Icon(
-                            painterResource(R.drawable.ic_volume_up),
-                            contentDescription = null,
-                            modifier = Modifier.size(ButtonDefaults.IconSize),
-                        )
-                        Spacer(Modifier.width(ButtonDefaults.IconSpacing))
-                        Text(stringResource(R.string.chord_play))
-                    }
-                }
+                PlayButton(stringResource(R.string.chord_play), onPlay)
             }
         }
         Spacer(Modifier.height(12.dp))
