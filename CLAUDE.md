@@ -4,7 +4,7 @@ App Android pessoal (afinador, tabs, teoria, metrônomo). A especificação comp
 
 ## Fase atual
 
-**Fase 4 (Teoria)**: aguardando o ok do usuário para o plano.
+**Fase 4 (Teoria)**: implementada e commitada (mapa do braço com afinação, biblioteca de acordes, 6 lições); falta o usuário confirmar no celular. Pedido do usuário: o mapa NÃO usa microfone.
 Ordem combinada: 0 → 1 → 3 → 4 → 2 → 5 (Músicas ficou para depois, por escolha do usuário).
 Concluídas: Fase 0 (ambiente + abas), Fase 1 (afinador) e Fase 3 (metrônomo com tap tempo), todas confirmadas no celular.
 Pendências que dependem da Fase 2 (Room): afinações personalizadas; tocar no acorde de uma música abre o diagrama.
@@ -23,7 +23,8 @@ Ideias anotadas para depois: lição na Teoria sobre afinações e nomes das not
 ## Convenções
 
 - Explicações, textos da interface e comentários em **português do Brasil**; nomes de classes/funções/variáveis em inglês.
-- Textos da interface sempre em `res/values/strings.xml` (nunca fixos no código).
+- Textos da interface sempre em recursos (nunca fixos no código): `strings.xml` (geral),
+  `strings_theory.xml` (telas da Teoria) e `strings_lessons.xml` (texto das lições). Aspas tipográficas “ ” e `\'`.
 - Versões de bibliotecas e plugins só em `gradle/libs.versions.toml`.
 - Sem bibliotecas de áudio externas: detecção de nota com YIN implementado no projeto.
 - Ícones: vector drawables em `res/drawable` (Material Symbols convertidos ou desenhados à mão), sem `material-icons-extended`.
@@ -74,18 +75,31 @@ app/src/main/java/dev/andrei/violaolivre/
 ├── music/
 │   ├── Note.kt              nota por número MIDI, frequência (A4 = 440), nomes ♯/♭, centsBetween
 │   ├── Tuning.kt            Tuning (6 notas, 6ª → 1ª) e Tunings (as 9 do README)
+│   ├── Scale.kt / Chord.kt  escalas (maior, menor, pentatônicas) e tipos de acorde (sufixo BR: m, 7, 7M, m7, °)
+│   ├── HarmonicField.kt     campo harmônico maior; GUITAR_KEYS = tons com todos os desenhos (C D E F G A)
+│   ├── ChordShapes.kt       39 desenhos (casas 6ª→1ª, dedos, pestana); testes conferem nota a nota
+│   ├── FretPositions.kt     posições de uma nota no braço e os 5 desenhos da pentatônica
 │   ├── TimeSignature.kt     2/4, 3/4, 4/4, 6/8 (6/8 = colcheias, acento forte no 1 e leve no 4)
 │   └── TapTempo.kt          BPM pela média dos últimos toques
 └── ui/
     ├── navigation/          AppDestination (abas e rotas) e AppNavHost (Scaffold + NavigationBar + NavHost)
-    ├── components/          composables reutilizáveis (PlaceholderScreen)
+    ├── components/          reutilizáveis: Fretboard e ChordDiagram (Canvas), ChordViews (ChordTile, ChordDetail),
+    │                        TuningPicker/TuningNames, NotePlayer (tocar notas/acordes/sequências), ChoiceChips,
+    │                        ScreenHeader, PlaceholderScreen
     ├── tuner/               TunerScreen (permissão + layout), TunerViewModel, TunerUiState (cálculos
     │                        testáveis: corda alvo, cents), TuningMeter (Canvas), TuningNames (id → strings.xml)
     ├── metronome/           MetronomeScreen e MetronomeViewModel (escopo da Activity, criado no AppNavHost)
-    ├── songs/  theory/      telas provisórias
+    ├── theory/              TheoryScreen (lista de TheoryTopic), FretboardNotesScreen, ChordsScreen;
+    │   └── lessons/         LessonComponents + uma tela por lição (rotas *LessonRoute)
+    ├── songs/               tela provisória
     └── theme/               Color.kt e Theme.kt
 app/src/test/...             testes locais espelhando os pacotes acima
 ```
+
+Notas da Teoria:
+- A aba é um grafo aninhado (`navigation<TheoryGraph>`); cada tópico tem sua rota tipada em AppDestination.kt.
+- Braço na horizontal com a 1ª corda em cima (igual à tab); diagramas de acorde na vertical. Usuário destro.
+- Desenhos de acorde assumem afinação padrão.
 
 Notas do metrônomo:
 - Continua tocando ao trocar de aba (ViewModel criado no AppNavHost, fora do NavHost); para quando o app
