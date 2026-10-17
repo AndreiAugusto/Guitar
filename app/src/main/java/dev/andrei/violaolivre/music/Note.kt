@@ -10,6 +10,9 @@ import kotlin.math.roundToInt
  */
 data class Note(val midi: Int) {
 
+    /** A nota sem a oitava, de 0 (C) a 11 (B): todo Lá é 9, em qualquer oitava. */
+    val pitchClass: Int get() = midi.mod(12)
+
     /** Oitava no padrão científico: o dó central é C4. */
     val octave: Int get() = midi.floorDiv(12) - 1
 
@@ -17,10 +20,7 @@ data class Note(val midi: Int) {
     val frequency: Double get() = A4_FREQUENCY * 2.0.pow((midi - A4_MIDI) / 12.0)
 
     /** Nome sem a oitava, ex.: "F♯". Com [useFlats], usa bemóis: "G♭". */
-    fun name(useFlats: Boolean = false): String {
-        val names = if (useFlats) FLAT_NAMES else SHARP_NAMES
-        return names[midi.mod(12)]
-    }
+    fun name(useFlats: Boolean = false): String = pitchClassName(pitchClass, useFlats)
 
     /** Nome com a oitava, ex.: "E2". */
     fun fullName(useFlats: Boolean = false): String = name(useFlats) + octave
@@ -31,8 +31,8 @@ data class Note(val midi: Int) {
         const val A4_FREQUENCY = 440.0
         const val A4_MIDI = 69
 
-        private val SHARP_NAMES = listOf("C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")
-        private val FLAT_NAMES = listOf("C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B")
+        internal val SHARP_NAMES = listOf("C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B")
+        internal val FLAT_NAMES = listOf("C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B")
         private val LETTER_OFFSETS = mapOf('C' to 0, 'D' to 2, 'E' to 4, 'F' to 5, 'G' to 7, 'A' to 9, 'B' to 11)
 
         /** A nota da escala temperada mais próxima de uma frequência. */
@@ -57,6 +57,15 @@ data class Note(val midi: Int) {
         }
     }
 }
+
+/** Nome de uma classe de altura (0 = C ... 11 = B), com sustenido ou bemol. */
+fun pitchClassName(pitchClass: Int, useFlats: Boolean = false): String {
+    val names = if (useFlats) Note.FLAT_NAMES else Note.SHARP_NAMES
+    return names[pitchClass.mod(12)]
+}
+
+/** true para as 7 notas naturais (sem ♯/♭): C D E F G A B. */
+fun isNatural(pitchClass: Int): Boolean = pitchClass.mod(12) in setOf(0, 2, 4, 5, 7, 9, 11)
 
 /**
  * Distância em cents de [frequency] até [reference]. 100 cents = 1 semitom.
