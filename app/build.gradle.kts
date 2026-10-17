@@ -49,4 +49,7 @@ dependencies {
 
     // Ferramentas de @Preview: só entram na versão de desenvolvimento (debug)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    // Testes locais (rodam na JVM do computador, sem celular)
+    testImplementation(libs.junit)
 }
