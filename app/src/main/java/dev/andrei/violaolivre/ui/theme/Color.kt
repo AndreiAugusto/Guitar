@@ -16,3 +16,5 @@ val OnBlue = Color(0xFF0B1D33)
 
 // Cor do ponteiro quando a corda está afinada (usada na Fase 1)
 val InTuneGreen = Color(0xFF34C759)
+// Cor do ponteiro quando a corda está desafinada
+val OutOfTuneOrange = Color(0xFFFFB74D)

@@ -14,12 +14,32 @@
 
     <!-- Afinador -->
     <string name="tuner_reading">%1$.1f Hz · %2$+d cents</string>
-    <string name="tuner_play_string">Toque uma corda</string>
     <string name="tuner_no_note">–</string>
+    <string name="tuner_choose_tuning">Escolher afinação</string>
+    <string name="tuner_hint_play">Toque a corda e ajuste</string>
+    <string name="tuner_hint_low">Baixa: aperte a corda</string>
+    <string name="tuner_hint_high">Alta: afrouxe a corda</string>
+    <string name="tuner_hint_in_tune">Afinada!</string>
+    <string name="tuner_mode_auto">Corda detectada automaticamente</string>
+    <string name="tuner_mode_manual">Corda fixa · toque nela de novo para voltar ao automático</string>
+    <string name="tuner_string_description">%1$dª corda, %2$s</string>
     <string name="tuner_mic_error">Não foi possível acessar o microfone. Feche outros apps que estejam usando o microfone e tente de novo.</string>
     <string name="tuner_permission_title">O afinador precisa do microfone</string>
     <string name="tuner_permission_text">O som é analisado só no celular, enquanto esta tela está aberta. Nada é gravado nem enviado.</string>
     <string name="tuner_permission_button">Permitir microfone</string>
     <string name="tuner_permission_denied">A permissão foi negada. Para usar o afinador, ative o microfone nas configurações do app.</string>
     <string name="tuner_open_settings">Abrir configurações</string>
+
+    <!-- Afinações prontas -->
+    <string name="tuning_standard">Padrão</string>
+    <string name="tuning_half_step_down">Meio tom abaixo</string>
+    <string name="tuning_whole_step_down">Um tom abaixo</string>
+    <string name="tuning_drop_d">Drop D</string>
+    <string name="tuning_drop_c">Drop C</string>
+    <string name="tuning_dadgad">DADGAD</string>
+    <string name="tuning_open_g">Open G</string>
+    <string name="tuning_open_d">Open D</string>
+    <string name="tuning_open_e">Open E</string>
+    <string name="tuning_chromatic">Cromático</string>
+    <string name="tuning_chromatic_description">Qualquer nota</string>
 </resources>

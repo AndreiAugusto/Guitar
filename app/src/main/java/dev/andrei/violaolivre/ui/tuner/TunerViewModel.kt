@@ -6,8 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dev.andrei.violaolivre.audio.MicListener
 import dev.andrei.violaolivre.audio.PitchDetector
 import dev.andrei.violaolivre.audio.PitchSmoother
-import dev.andrei.violaolivre.music.Note
-import dev.andrei.violaolivre.music.centsBetween
+import dev.andrei.violaolivre.music.Tuning
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,20 +18,6 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-
-/** Tudo o que a tela do afinador precisa para se desenhar. */
-data class TunerUiState(
-    /** Frequência suavizada em Hz; null quando nenhuma corda está soando. */
-    val frequency: Double? = null,
-    /** true quando a corda parou de soar e a tela só está mantendo a última leitura. */
-    val isHolding: Boolean = false,
-    val micError: Boolean = false,
-) {
-    val note: Note? get() = frequency?.let(Note::nearest)
-
-    /** Desvio em cents até a nota mais próxima. */
-    val cents: Double get() = frequency?.let { centsBetween(it, Note.nearest(it).frequency) } ?: 0.0
-}
 
 /**
  * Cérebro do afinador: liga o microfone, passa o áudio pelo detector e publica o estado.
@@ -71,6 +56,22 @@ class TunerViewModel : ViewModel() {
         smoother.reset()
         silentWindows = 0
         _uiState.update { it.copy(frequency = null, isHolding = false) }
+    }
+
+    /** Escolhe uma afinação pronta (sai do modo cromático e volta à detecção automática). */
+    fun selectTuning(tuning: Tuning) {
+        _uiState.update { it.copy(tuning = tuning, isChromatic = false, manualStringIndex = null) }
+    }
+
+    fun selectChromatic() {
+        _uiState.update { it.copy(isChromatic = true, manualStringIndex = null) }
+    }
+
+    /** Toque numa corda: fixa nela; toque de novo na mesma: volta ao automático. */
+    fun toggleString(index: Int) {
+        _uiState.update {
+            it.copy(manualStringIndex = if (it.manualStringIndex == index) null else index)
+        }
     }
 
     private fun onDetection(result: PitchDetector.Result?) {
