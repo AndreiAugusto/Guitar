@@ -9,7 +9,6 @@
 
     <!-- Textos provisórios das telas -->
     <string name="placeholder_songs">Em breve: suas músicas e tabs (Fase 2)</string>
-    <string name="placeholder_metronome">Em breve: metrônomo com BPM e compasso (Fase 3)</string>
     <string name="placeholder_theory">Em breve: braço do violão, acordes e lições (Fase 4)</string>
 
     <!-- Afinador -->
@@ -31,6 +30,14 @@
     <string name="tuner_permission_button">Permitir microfone</string>
     <string name="tuner_permission_denied">A permissão foi negada. Para usar o afinador, ative o microfone nas configurações do app.</string>
     <string name="tuner_open_settings">Abrir configurações</string>
+
+    <!-- Metrônomo -->
+    <string name="metronome_bpm">BPM</string>
+    <string name="metronome_accent">Acento no 1º tempo</string>
+    <string name="metronome_tap">Tap tempo</string>
+    <string name="metronome_play">Tocar</string>
+    <string name="metronome_stop">Parar</string>
+    <string name="metronome_playing">Metrônomo tocando</string>
 
     <!-- Afinações prontas -->
     <string name="tuning_standard">Padrão</string>
