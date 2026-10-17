@@ -12,9 +12,14 @@ class ToneGenerator {
     private var track: AudioTrack? = null
 
     /** Gera o som de corda em [frequency] Hz e toca (interrompe o som anterior, se houver). */
-    suspend fun play(frequency: Double) {
+    suspend fun play(frequency: Double) = playSamples { StringSynth.pluck(frequency) }
+
+    /** Toca um acorde dedilhado (frequências da corda mais grave para a mais aguda). */
+    suspend fun playChord(frequencies: List<Double>) = playSamples { StringSynth.strum(frequencies) }
+
+    private suspend fun playSamples(synthesize: () -> FloatArray) {
         // A síntese leva alguns milissegundos: fora da thread da interface
-        val samples = withContext(Dispatchers.Default) { StringSynth.pluck(frequency) }
+        val samples = withContext(Dispatchers.Default) { synthesize() }
         stop()
         // MODE_STATIC: o som inteiro é entregue de uma vez (bom para sons curtos e prontos)
         val newTrack = AudioTrack.Builder()

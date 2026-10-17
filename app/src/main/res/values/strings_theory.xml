@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos da aba Teoria (separados do strings.xml para ele não virar um livro) -->
+<resources>
+    <!-- Lista de tópicos -->
+    <string name="theory_fretboard_title">Notas no braço</string>
+    <string name="theory_fretboard_subtitle">mapa interativo</string>
+
+    <!-- Notas no braço -->
+    <string name="fretboard_intro">Cada casa sobe um semitom. Depois do Mi e do Si não existe sustenido: o próximo é Fá e Dó. Na casa 12 as notas se repetem, uma oitava acima.</string>
+    <string name="fretboard_tip">Toque numa casa para ouvir a nota</string>
+    <string name="fretboard_show_accidentals">Mostrar ♯</string>
+    <string name="fretboard_highlight">Onde está a nota…</string>
+    <string name="fretboard_position">%1$dª corda, casa %2$d: %3$s</string>
+    <string name="fretboard_position_open">%1$dª corda solta: %2$s</string>
+</resources>

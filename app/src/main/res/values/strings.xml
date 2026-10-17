@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Violão Livre</string>
+    <string name="back">Voltar</string>
 
     <!-- Abas da barra inferior -->
     <string name="tab_tuner">Afinador</string>
@@ -9,7 +10,6 @@
 
     <!-- Textos provisórios das telas -->
     <string name="placeholder_songs">Em breve: suas músicas e tabs (Fase 2)</string>
-    <string name="placeholder_theory">Em breve: braço do violão, acordes e lições (Fase 4)</string>
 
     <!-- Afinador -->
     <string name="tuner_reading">%1$.1f Hz · %2$+d cents</string>

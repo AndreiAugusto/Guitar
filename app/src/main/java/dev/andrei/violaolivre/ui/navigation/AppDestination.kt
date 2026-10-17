@@ -9,7 +9,9 @@ import kotlinx.serialization.Serializable
 // @Serializable deixa o Navigation transformar a rota (e argumentos futuros) em texto.
 @Serializable data object TunerRoute
 @Serializable data object SongsRoute
-@Serializable data object TheoryRoute
+@Serializable data object TheoryGraph   // a aba Teoria é um grupo de telas (lista + tópicos)
+@Serializable data object TheoryRoute   // a lista de tópicos
+@Serializable data object FretboardNotesRoute
 @Serializable data object MetronomeRoute
 
 /** As abas da barra inferior, na ordem em que aparecem. */
@@ -20,6 +22,6 @@ enum class AppDestination(
 ) {
     TUNER(TunerRoute, R.string.tab_tuner, R.drawable.ic_tab_tuner),
     SONGS(SongsRoute, R.string.tab_songs, R.drawable.ic_tab_songs),
-    THEORY(TheoryRoute, R.string.tab_theory, R.drawable.ic_tab_theory),
+    THEORY(TheoryGraph, R.string.tab_theory, R.drawable.ic_tab_theory),
     METRONOME(MetronomeRoute, R.string.tab_metronome, R.drawable.ic_tab_metronome),
 }

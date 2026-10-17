@@ -24,12 +24,14 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.andrei.violaolivre.R
 import dev.andrei.violaolivre.ui.metronome.MetronomeScreen
 import dev.andrei.violaolivre.ui.metronome.MetronomeViewModel
 import dev.andrei.violaolivre.ui.songs.SongsScreen
+import dev.andrei.violaolivre.ui.theory.FretboardNotesScreen
 import dev.andrei.violaolivre.ui.theory.TheoryScreen
 import dev.andrei.violaolivre.ui.tuner.TunerScreen
 
@@ -101,7 +103,12 @@ fun AppNavHost() {
         ) {
             composable<TunerRoute> { TunerScreen() }
             composable<SongsRoute> { SongsScreen() }
-            composable<TheoryRoute> { TheoryScreen() }
+            // Grafo aninhado: a aba Teoria tem a lista e as telas dos tópicos.
+            // A barra inferior marca "Teoria" em qualquer tela deste grupo.
+            navigation<TheoryGraph>(startDestination = TheoryRoute) {
+                composable<TheoryRoute> { TheoryScreen(onOpenTopic = { navController.navigate(it) }) }
+                composable<FretboardNotesRoute> { FretboardNotesScreen(onBack = navController::popBackStack) }
+            }
             composable<MetronomeRoute> { MetronomeScreen(metronomeViewModel) }
         }
     }

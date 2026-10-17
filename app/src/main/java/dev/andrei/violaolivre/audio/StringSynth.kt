@@ -42,6 +42,27 @@ object StringSynth {
         return samples
     }
 
+    /**
+     * Acorde dedilhado: as notas soam uma após a outra (da mais grave para a mais aguda),
+     * separadas por [strumDelaySeconds], como quando a palheta passa pelas cordas.
+     */
+    fun strum(
+        frequencies: List<Double>,
+        sampleRate: Int = MicListener.SAMPLE_RATE,
+        strumDelaySeconds: Double = 0.04,
+        durationSeconds: Double = 3.0,
+    ): FloatArray {
+        val delaySamples = (strumDelaySeconds * sampleRate).toInt()
+        val total = FloatArray((sampleRate * durationSeconds).toInt() + delaySamples * frequencies.size)
+        frequencies.forEachIndexed { i, frequency ->
+            val note = pluck(frequency, sampleRate, durationSeconds)
+            val offset = i * delaySamples
+            for (j in note.indices) total[offset + j] += note[j]
+        }
+        normalize(total, peak = 0.8f)
+        return total
+    }
+
     /** Ajusta o volume para o pico ficar em [peak] (abaixo de 1, para não distorcer). */
     private fun normalize(samples: FloatArray, peak: Float) {
         val max = samples.maxOf { abs(it) }
