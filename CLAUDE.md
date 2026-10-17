@@ -4,7 +4,7 @@ App Android pessoal (afinador, tabs, teoria, metrônomo). A especificação comp
 
 ## Fase atual
 
-**Fase 3 (Metrônomo)**: aguardando o ok do usuário para o plano.
+**Fase 3 (Metrônomo)**: os 3 passos estão implementados e commitados (com tap tempo, pedido pelo usuário); falta o usuário confirmar no celular.
 Ordem combinada: 0 → 1 → 3 → 4 → 2 → 5 (Músicas ficou para depois, por escolha do usuário).
 Concluídas: Fase 0 (ambiente + abas) e Fase 1 (afinador completo, confirmado no celular).
 Pendências que dependem da Fase 2 (Room): afinações personalizadas; tocar no acorde de uma música abre o diagrama.
@@ -67,19 +67,30 @@ app/src/main/java/dev/andrei/violaolivre/
 │   ├── PitchSmoother.kt     mediana das últimas leituras; salto de nota só com 2 leituras seguidas
 │   ├── MicListener.kt       AudioRecord (44,1 kHz, PCM float) → Flow de janelas de 4096 com passo de 2048
 │   ├── StringSynth.kt       síntese aditiva de corda dedilhada
-│   └── ToneGenerator.kt     toca a síntese com AudioTrack (MODE_STATIC)
+│   ├── ToneGenerator.kt     toca a síntese com AudioTrack (MODE_STATIC)
+│   ├── ClickSynth.kt        cliques do metrônomo (forte/médio/normal)
+│   ├── ClickRenderer.kt     põe cada clique na amostra exata do tempo (relógio = contagem de amostras)
+│   └── MetronomeEngine.kt   thread de áudio + AudioTrack MODE_STREAM; tempo soando via playbackHeadPosition
 ├── music/
 │   ├── Note.kt              nota por número MIDI, frequência (A4 = 440), nomes ♯/♭, centsBetween
-│   └── Tuning.kt            Tuning (6 notas, 6ª → 1ª) e Tunings (as 9 do README)
+│   ├── Tuning.kt            Tuning (6 notas, 6ª → 1ª) e Tunings (as 9 do README)
+│   ├── TimeSignature.kt     2/4, 3/4, 4/4, 6/8 (6/8 = colcheias, acento forte no 1 e leve no 4)
+│   └── TapTempo.kt          BPM pela média dos últimos toques
 └── ui/
     ├── navigation/          AppDestination (abas e rotas) e AppNavHost (Scaffold + NavigationBar + NavHost)
     ├── components/          composables reutilizáveis (PlaceholderScreen)
     ├── tuner/               TunerScreen (permissão + layout), TunerViewModel, TunerUiState (cálculos
     │                        testáveis: corda alvo, cents), TuningMeter (Canvas), TuningNames (id → strings.xml)
-    ├── songs/  theory/  metronome/   telas provisórias
+    ├── metronome/           MetronomeScreen e MetronomeViewModel (escopo da Activity, criado no AppNavHost)
+    ├── songs/  theory/      telas provisórias
     └── theme/               Color.kt e Theme.kt
 app/src/test/...             testes locais espelhando os pacotes acima
 ```
+
+Notas do metrônomo:
+- Continua tocando ao trocar de aba (ViewModel criado no AppNavHost, fora do NavHost); para quando o app
+  vai para segundo plano (ProcessLifecycleOwner). Sem foreground service, por decisão do usuário.
+- Enquanto toca: tela sempre acesa (keepScreenOn no AppNavHost) e bolinha (Badge) na aba Metrônomo.
 
 Notas do afinador:
 - Microfone ligado só com a aba visível (`LifecycleStartEffect` na TunerScreen); a nota de referência também para ao sair.
