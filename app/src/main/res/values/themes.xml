@@ -1,0 +1,7 @@
+<resources>
+    <!-- Tema da janela, aplicado antes do Compose desenhar a tela.
+         O fundo escuro evita um "flash" branco ao abrir o app. -->
+    <style name="Theme.ViolaoLivre" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#FF1C1C1E</item>
+    </style>
+</resources>

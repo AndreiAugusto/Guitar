@@ -1,0 +1,26 @@
+# Gradle: cache e saídas de compilação (são recriados a cada build)
+.gradle/
+.kotlin/
+build/
+
+# Configuração da máquina local (ex.: caminho do Android SDK)
+local.properties
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Arquivos gerados pelo Android
+*.apk
+*.aab
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Chaves de assinatura (nunca versionar)
+*.jks
+*.keystore
+
+# Sistema
+.DS_Store
